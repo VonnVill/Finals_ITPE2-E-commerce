@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (restrictedPages.includes(currentLocation.split('/').pop())) {
           alert("You need to be logged in to access this page.");
-          window.location.href = "login.html,";
+          window.location.href = "login.html";
       }
   }
 
