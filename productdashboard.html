@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Product Dashboard</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+  rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+    body {
+    background: url(https://www.slrlounge.com/wp-content/uploads/2020/06/best-landscape-photographers-to-follow-in-2020.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: monospace;
+  }
+    .card {
+      height: 100%;
+      
+    }
+    .card-img-top {
+      object-fit: cover;
+      height: 350px;
+    }
+    .card-body {
+      height: auto; 
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-body .btn-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .price{
+        background-color: rgb(212, 212, 212);
+        border-radius: 10px;
+    }
+
+    
+</style>
+<body>
+ 
+  <nav class="navbar navbar-expand-lg navbar-clear bg-clear">
+    <div class="container">
+      <a class="navbar-brand" href="#">Photography Store</a>
+      <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" class="btn" aria-current="page" href="productdashboard.html">Products</a>
+          </li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="userdashboard.html">User</a>
+        </li>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productModal">
+          Add Product
+        </button>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Cart</a>
+        </li>
+
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search">
+          <button class="btn btn-outline-red" type="submit">Search</button>
+        </form>
+
+        <p id="userInfo"></p>
+        <button class="btn-logout btn-danger" onclick="logout()">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <h2 class="mb-4">Product Dashboard</h2>
+
+    <div id="productList" class="row">
+      <!-- Product cards will be dynamically added here using JavaScript -->
+    </div>
+  </div>
+
+  <!-- Update Product Modal -->
+  <div class="modal fade" id="updateProductModal" tabindex="-1" role="dialog" aria-labelledby="updateProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateProductModalLabel">Update Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="updateProductForm">
+            <div class="mb-3">
+              <label for="updateProductName" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="updateProductName" required>
+            </div>
+            <div class="mb-3">
+              <label for="updateProductDescription" class="form-label">Product Description</label>
+              <textarea class="form-control" id="updateProductDescription" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="updateProductCost" class="form-label">Cost (USD)</label>
+              <input type="number" step="0.01" class="form-control" id="updateProductCost" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Product</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+  <script src="productdashboard.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>

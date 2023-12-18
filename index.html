@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>3-2 Bootstrap Villaroman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+  rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="login.js"></script>
+  <!-- <script src="cart.js"></script> -->
+  
+</head>
+<style>
+    body {
+    background: url(https://www.slrlounge.com/wp-content/uploads/2020/06/best-landscape-photographers-to-follow-in-2020.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: monospace;
+  }
+    .card {
+      height: 100%;
+      
+    }
+    .card-img-top {
+      object-fit: cover;
+      height: 350px;
+    }
+    .card-body {
+      height: auto; 
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-body .btn-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .price{
+        background-color: rgb(212, 212, 212);
+        border-radius: 10px;
+    }
+
+    
+</style>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-clear bg-clear">
+    <div class="container">
+      <a class="navbar-brand" href="#">Photography Store</a>
+      <button class="navbar-toggler" type="button" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" class="btn" aria-current="page" href="productdashboard.html">Products</a>
+          </li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="userdashboard.html">User</a>
+        </li>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#productModal">
+          Add Product
+        </button>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="cart.html">Cart</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="sold.html">List of Sales</a>
+        </li>
+
+        
+
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search">
+          <button class="btn btn-outline-red" type="submit">Search</button>
+        </form>
+
+        <p id="userInfo"></p>
+        <button class="btn-logout btn-danger" onclick="logout()">Logout</button>
+      </div>
+      </div>
+    </div>
+  </nav>
+
+  <br><br><br><br><br>
+  
+  <div class="container mt-4">
+    <h2 class="mb-4">Items</h2>
+
+    <div id="productList" class="row">
+      <!-- Product cards will be dynamically added here using JavaScript -->
+    </div>
+  </div>
+
+      <!-- Product Details Modal -->
+      <div class="modal fade" id="productDetailsModal" tabindex="-1" role="dialog" aria-labelledby="productDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="productDetailsModalLabel">Product Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="productDetailsBody">
+              <!-- Product details will be dynamically added here using JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+  <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="productModalLabel">Add Product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="productName">Product Name</label>
+            <input type="text" class="form-control" id="productName">
+          </div>
+          <div class="form-group">
+            <label for="productDescription">Product Description</label>
+            <textarea class="form-control" id="productDescription" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="productCost">Cost (USD)</label>
+            <input type="number" step="0.01" class="form-control" id="productCost">
+          </div>
+          <div class="form-group">
+            <label for="productImage">Product Image</label>
+            <input type="file" class="form-control-file" id="productImage">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" onclick="saveProduct()">Save Product</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      const productNameInput = document.getElementById("productName");
+      const productDescriptionInput = document.getElementById("productDescription");
+      const productCostInput = document.getElementById("productCost");
+      const productImageInput = document.getElementById("productImage");
+      const saveProductButton = document.querySelector(".btn-success");
+      const closeButton = document.querySelector(".btn-secondary");
+
+      // Add click event listener to the Save Product button
+      saveProductButton.addEventListener("click", function () {
+        saveProduct();
+      });
+
+      // Add click event listener to the Close button
+      closeButton.addEventListener("click", function () {
+        closeProductModal();
+      });
+
+      // Retrieve products from local storage
+      const products = JSON.parse(localStorage.getItem("products")) || [];
+
+      // Get the product list container
+      const productListContainer = document.getElementById("productList");
+
+      // Display each product as a card
+      products.forEach((product, index) => {
+        const productCard = createProductCard(product, index);
+        productListContainer.appendChild(productCard);
+      });
+
+      function createProductCard(product, index) {
+        const card = document.createElement("div");
+        card.classList.add("col-md-4", "mb-4");
+
+        card.innerHTML = `
+          <div class="card">
+            <img src="${product.image}" class="card-img-top" alt="${product.name}">
+            <div class="card-body">
+              <h5 class="card-title">${product.name}</h5>
+              <p class="card-text product-description" data-toggle="modal" data-target="#productDetailsModal" data-index="${index}">${product.description}</p>
+              <p class="card-text">Cost: ${product.cost}</p>
+              <button class="btn btn-primary add-to-cart" data-index="${index}">Add to Cart</button>
+            </div>
+          </div>
+        `;
+
+        return card;
+      }
+
+      // Add click event listener to the "Add to Cart" buttons
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("add-to-cart")) {
+          const index = event.target.dataset.index;
+          addToCart(products[index]);
+        }
+      });
+
+      // Add click event listener to the product description for showing details modal
+      document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("product-description")) {
+          const index = event.target.dataset.index;
+          showProductDetails(products[index]);
+        }
+      });
+
+      function showProductDetails(product) {
+        const productDetailsBody = document.getElementById("productDetailsBody");
+        productDetailsBody.innerHTML = `
+          <p><strong>Name:</strong> ${product.name}</p>
+          <p><strong>Description:</strong> ${product.description}</p>
+          <p><strong>Cost:</strong> ${product.cost}</p>
+          <img src="${product.image}" class="img-fluid" alt="${product.name}">
+        `;
+
+        // Show the product details modal
+        $('#productDetailsModal').modal('show');
+      }
+
+      function addToCart(product) {
+        // Retrieve existing cart from local storage
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Check if the product is already in the cart
+        const existingProduct = cart.find((item) => item.name === product.name);
+
+        if (existingProduct) {
+          // If the product is already in the cart, increase the quantity
+          existingProduct.quantity++;
+        } else {
+          // If the product is not in the cart, add it with quantity 1
+          cart.push({ ...product, quantity: 1 });
+        }
+
+        // Save the updated cart to local storage
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        // Display a success message or update the UI
+        alert(`Product "${product.name}" added to the cart.`);
+      }
+
+      function saveProduct() {
+        // Get product details
+        const productName = productNameInput.value;
+        const productDescription = productDescriptionInput.value;
+        const productCost = productCostInput.value;
+        const productImage = productImageInput.value; // Note: You may want to handle file uploads differently
+
+        // Validate product details
+        if (!productName || !productDescription || !productCost || !productImage) {
+          alert("Please fill in all the fields.");
+          return;
+        }
+
+        // Create product object
+        const product = {
+          name: productName,
+          description: productDescription,
+          cost: productCost,
+          image: productImage,
+        };
+
+        // Retrieve existing products from local storage
+        const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
+
+        // Add the new product to the array
+        existingProducts.push(product);
+
+        // Save the updated product list to local storage
+        localStorage.setItem("products", JSON.stringify(existingProducts));
+
+        // Display a success message
+        alert(`Product "${productName}" has been successfully added.`);
+
+        // You can perform additional actions here, such as updating the dashboard
+
+        // Clear the form fields
+        clearFormFields();
+
+        // Close the modal
+        closeProductModal();
+
+        // Refresh the product list
+        refreshProductList();
+      }
+
+      function refreshProductList() {
+        // Clear the existing product list
+        productListContainer.innerHTML = "";
+
+        // Retrieve updated products from local storage
+        const updatedProducts = JSON.parse(localStorage.getItem("products")) || [];
+
+        // Display each updated product as a card
+        updatedProducts.forEach((product, index) => {
+          const productCard = createProductCard(product, index);
+          productListContainer.appendChild(productCard);
+        });
+      }
+
+      function clearFormFields() {
+        productNameInput.value = "";
+        productDescriptionInput.value = "";
+        productCostInput.value = "";
+        productImageInput.value = "";
+      }
+
+      function closeProductModal() {
+        // Assuming you are using Bootstrap modal, close the modal
+        $('#productModal').modal('hide');
+      }
+    });
+</script>
+</body>
+</html>
